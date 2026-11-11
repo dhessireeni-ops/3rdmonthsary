@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8e9e8">
+<title>our little love letter ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+:root{--ink:#674d4b;--rose:#d78e91;--paper:#fffaf5;--pink:#f8e9e8}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 20% 15%,#fff8f2,transparent 35%),linear-gradient(135deg,#f7e4e3,#f9eee8);color:var(--ink);font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;padding:28px 16px;overflow-x:hidden}
+main{width:min(100%,720px);text-align:center}
+.kicker{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:#b77c7d;margin-bottom:12px}
+h1{font:600 clamp(2rem,6vw,3.2rem) 'Playfair Display',serif;margin:0 0 10px}
+.subtitle{color:#987977;margin:0 auto 28px;line-height:1.7}
+.stage{background:#fff9f5d9;border:1px solid #fff;box-shadow:0 18px 60px #a66d6d20;border-radius:28px;padding:clamp(22px,5vw,42px);min-height:330px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.envelope-wrap{cursor:pointer;border:0;background:transparent;padding:8px;transition:transform .25s}
+.envelope-wrap:hover{transform:translateY(-5px) rotate(-1deg)}
+.envelope{width:210px;height:142px;background:#e9b7b3;position:relative;border-radius:8px;box-shadow:0 12px 24px #9c646433;margin:18px auto 24px}
+.envelope:before{content:"";position:absolute;inset:0;background:#f2cbc5;clip-path:polygon(0 0,50% 58%,100% 0);border-radius:8px 8px 0 0;z-index:2}
+.envelope:after{content:"";position:absolute;inset:0;background:#dfa5a3;clip-path:polygon(0 100%,50% 48%,100% 100%);border-radius:0 0 8px 8px;z-index:3}
+.heart{position:absolute;z-index:4;left:50%;top:55%;transform:translate(-50%,-50%);font-size:28px}
+.tap{font-weight:700;color:#98696a}
+.hidden{display:none!important}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:510px;margin:18px auto}
+.choice{border:1px solid #e7c5c1;background:#fffdfb;color:#765958;border-radius:16px;padding:16px 12px;font:600 1rem 'DM Sans';cursor:pointer;transition:.2s}
+.choice:hover{background:#f9e7e5;transform:translateY(-2px)}
+.choice small{display:block;font-weight:400;color:#a17d7a;margin-top:5px}
+.feedback{min-height:32px;color:#a96e74;font-size:.95rem;margin:4px 0}
+.letter{display:none;text-align:left;background:var(--paper);border:1px solid #f1e2d8;border-radius:18px;padding:clamp(22px,5vw,42px);width:100%;box-shadow:0 10px 30px #8d666315;animation:appear .7s ease}
+.letter.open{display:block}
+.letter h2{text-align:center;font:600 1.7rem 'Playfair Display',serif;margin:0 0 24px;color:#a66f70}
+.letter p{font-size:1rem;line-height:1.9;margin:0 0 17px;color:#705957}
+.signature{text-align:right!important;font:italic 1.3rem 'Playfair Display',serif!important;color:#a66f70!important;margin-top:24px!important}
+.music{margin-top:28px;padding-top:22px;border-top:1px dashed #e4c9c3;text-align:center}
+.music h3{font:600 1.35rem 'Playfair Display',serif;margin:0 0 8px}
+.music p{font-size:.85rem;color:#987977;margin:0 0 14px}
+.music iframe{width:100%;max-width:420px;height:152px;border:0;border-radius:12px}
+.note{font-size:.75rem;color:#aa8a85;margin-top:16px}
+footer{font-size:.75rem;color:#b38f8b;margin-top:22px}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.choices{grid-template-columns:1fr}.stage{padding:22px 16px}.letter p{font-size:.95rem}}
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">a little something for us</div>
+  <h1>for my baby ♡</h1>
+  <p class="subtitle">there's a tiny letter waiting for you.<br>but first, you have to unlock it.</p>
+
+  <section class="stage" aria-live="polite">
+    <div id="envelopeScreen">
+      <button class="envelope-wrap" id="openEnvelope" aria-label="Open the envelope">
+        <div class="envelope"><span class="heart">♡</span></div>
+      </button>
+      <div class="tap">tap the envelope to open it</div>
+    </div>
+
+    <div id="quizScreen" class="hidden">
+      <div class="kicker">one little question</div>
+      <h2 style="font:600 1.55rem 'Playfair Display',serif;margin:0 0 8px">which song is our song?</h2>
+      <p class="subtitle" style="margin-bottom:12px">choose carefully, my baby ♡</p>
+      <div class="choices">
+        <button class="choice" data-correct="true">the only exception<small>by paramore</small></button>
+        <button class="choice" data-correct="false">thinking of you<small>by katy perry</small></button>
+      </div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+
+    <article class="letter" id="letter">
+      <h2>my baby, happy monthsary to uss! ♡</h2>
+      <p>first and foremost, i want you to know that we may not share the same faith, but if there is a god listening, i hope he knows how grateful i am for bringing you into my life. even though i don't share the same beliefs as you, i'll always find a reason to be thankful for the things that led me to you.</p>
+      <p>thank you for enduring our arguments, for staying through our misunderstandings, and for choosing to understand me even when things aren't always easy. i hope you never grow tired of us, of our little disagreements, or of the things we still have to learn about each other. i know we aren't perfect, but i hope we continue to choose patience and understanding along the way.</p>
+      <p>our little moments, our kisses, our random ilys, and even the simplest things we share mean more to me than you could ever imagine. you might not always realize it, but i treasure every little piece of us. i hope you never doubt how much you mean to me.</p>
+      <p>i may not pray for us, but i will always hope for the best things to find their way to you and to us. and if there's one thing i'm certain of, it's that i'm genuinely grateful that our paths crossed.</p>
+      <p class="signature">i love you, always. ♡</p>
+      <div class="music">
+        <h3>our song ♡</h3>
+        <p>the only exception — paramore</p>
+        <iframe title="The Only Exception by Paramore on Spotify" src="https://open.spotify.com/embed/track/7JIuqL4ZqkpfGKQhYlrirs?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="note">press play to listen ♡</div>
+      </div>
+    </article>
+  </section>
+  <footer>made with love, just for you ♡</footer>
+</main>
+<script>
+const envelopeScreen=document.getElementById('envelopeScreen');
+const quizScreen=document.getElementById('quizScreen');
+const letter=document.getElementById('letter');
+const feedback=document.getElementById('feedback');
+document.getElementById('openEnvelope').addEventListener('click',()=>{
+  envelopeScreen.classList.add('hidden');
+  quizScreen.classList.remove('hidden');
+});
+document.querySelectorAll('.choice').forEach(button=>{
+  button.addEventListener('click',()=>{
+    if(button.dataset.correct==='true'){
+      quizScreen.classList.add('hidden');
+      letter.classList.add('open');
+      document.querySelector('.subtitle').textContent='you found your letter. ♡';
+      document.querySelector('.kicker').textContent='just for you';
+    }else{
+      feedback.textContent='oopsie! wrong answer 🥺👉👈 try again, my baby ♡';
+      button.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:260});
+    }
+  });
+});
+</script>
+</body>
+</html>
